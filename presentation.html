@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Salt</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="file:///home/psycojoker/code/slides/salt/ve/local/lib/python2.7/site-packages/landslide/themes/default/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="file:///home/psycojoker/code/slides/salt/ve/local/lib/python2.7/site-packages/landslide/themes/default/css/screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="file:///home/psycojoker/code/slides/salt/ve/local/lib/python2.7/site-packages/landslide/themes/default/js/slides.js"></script>
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Salt</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Au programme du workshop</h1></header>
+            
+            
+            <section><ul>
+<li>présentation de salt</li>
+<li>explication de comment lire et faire des states</li>
+<li>présentation des states les plus utile</li>
+<li>installation pour ceux qui l'ont pas déjà fait (je parie que c'est tout le monde)</li>
+<li>exercices</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Salt</h1></header>
+            
+            
+            <section><p>C'est quoi ?</p>
+<ul>
+<li>un outil d'orchestration</li>
+<li>un config manager</li>
+<li>une architecture client serveur</li>
+</ul>
+<p>Mais aussi:</p>
+<ul>
+<li>permet de gérer des vms (salt-cloud)</li>
+<li>et probablement d'autre trucs (prototyping pour faire du monitoring)</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Type de deployement</h1></header>
+            
+            
+            <section><ul>
+<li>en mode client-serveur (/!\ crypto maison)</li>
+<li>en local   ← on va probablement utiliser ça aujourd'hui</li>
+<li>Nouveau: ansible-like, via ssh sans minion</li>
+</ul>
+<p>Remarque: peut avoir plusieurs master en mode client-serveur</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Questions sur c'est quoi salt ?</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>rapide intro à l'orchestration</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>L'orchestration en 5min</h1></header>
+            
+            
+            <section><p>Simple:</p>
+<pre><code>salt &lt;pattern ou nom de machine&gt; &lt;commande&gt;
+</code></pre>
+<p>Exemples:</p>
+<pre><code>salt '*' test.ping
+
+salt mon_precieux.com cmd.run "ls"
+
+salt-call --local state.highstate
+</code></pre>
+<p>Commande à retenir: <strong>state.highstate</strong> synchronise les states.</p>
+<p>Liste des modules disponible:</p>
+<p>Vocabulaire (salt a plein de termes à la con): module == "commande d'orchestration"</p>
+<p>Remarque: en vrai, un module c'est &lt;module python&gt;.&lt;function dans le dis fichier&gt;</p>
+<p>Tous les modules disponible: <a href="http://docs.saltstack.com/ref/modules/all/index.html">http://docs.saltstack.com/ref/modules/all/index.html</a></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>States</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Détails importants</h1></header>
+            
+            
+            <section><ul>
+<li>les states sont écrits dans des fichier en ".sls"</li>
+<li>on doit définir un fichier top.sls dans /srv/salt/top.sls (customisable)</li>
+<li>
+<p>exemple de top.sls:</p>
+<p>!yaml
+base:
+  '*':  # tout le monde
+    - github
+    - zabbix-agent
+    - users</p>
+<p>'mon.server_1.com':
+    - ii
+    - logstash
+    - clean_backups</p>
+</li>
+<li>
+<p>chaque nom dans top.sls pointe vers soit:</p>
+<ul>
+<li>un fichier du même nom en .sls (eg: github.sls)</li>
+<li>un répertoire du même nom contenant un fichier init.sls (exemple: github/init.sls</li>
+</ul>
+</li>
+<li>
+<p>rappel: une fois que les states sont ecrit, pour les "executer" utiliser le module state.highstate</p>
+</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Les states</h1></header>
+            
+            
+            <section><p>Un state est un état dans lequel on veut que la machine soit. Exemple: je veux
+que ce package soit installé, je veux que cet user existe.</p>
+<p>Généralement très proche d'une commande ou d'une série de commandes shell (mais
+pas exactement).</p>
+<p>Structure (en yaml):</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">nom_du_state</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">module_python.fonction_python</span><span class="p-Indicator">:</span>
+<span class="lineno">3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">clef_1</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">argument_1</span>
+<span class="lineno">4</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">clef_2</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">argument_2</span>
+<span class="lineno">5</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">clef_3</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">argument_3</span>
+<span class="lineno">6</span>     <span class="l-Scalar-Plain">...</span>
+</pre></div>
+
+<p>Vous l'avez deviné, c'est exactement ça en python:</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="kn">from</span> <span class="nn">module_python</span> <span class="kn">import</span> <span class="n">fonction_python</span>
+<span class="lineno">2</span> 
+<span class="lineno">3</span> <span class="n">fonction_python</span><span class="p">(</span><span class="n">clef_1</span><span class="o">=</span><span class="n">argument_1</span><span class="p">,</span> <span class="n">clef_2</span><span class="o">=</span><span class="n">argument_2</span><span class="p">,</span> <span class="n">clef_3</span><span class="o">=</span><span class="n">argument_3</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Exemple</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="l-Scalar-Plain">fred_user</span><span class="p-Indicator">:</span>
+<span class="lineno"> 2</span>   <span class="l-Scalar-Plain">user.present</span><span class="p-Indicator">:</span>
+<span class="lineno"> 3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">fred</span>
+<span class="lineno"> 4</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">fullname</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Fred Jones</span>
+<span class="lineno"> 5</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">shell</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/bin/zsh</span>
+<span class="lineno"> 6</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">home</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/home/fred</span>
+<span class="lineno"> 7</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">uid</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">4000</span>
+<span class="lineno"> 8</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">gid</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">4000</span>
+<span class="lineno"> 9</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">groups</span><span class="p-Indicator">:</span>
+<span class="lineno">10</span>       <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">wheel</span>
+<span class="lineno">11</span>       <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">storage</span>
+<span class="lineno">12</span>       <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">games</span>
+<span class="lineno">13</span> 
+<span class="lineno">14</span> <span class="l-Scalar-Plain">dependance</span><span class="p-Indicator">:</span>
+<span class="lineno">15</span>   <span class="l-Scalar-Plain">pkg.installed</span><span class="p-Indicator">:</span>
+<span class="lineno">16</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">git</span>
+</pre></div>
+
+<p>Rappel:</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">nom_du_state</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">module_python.fonction_python</span><span class="p-Indicator">:</span>
+<span class="lineno">3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">clef_1</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">argument_1</span>
+<span class="lineno">4</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">clef_2</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">argument_2</span>
+<span class="lineno">5</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">clef_3</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">argument_3</span>
+<span class="lineno">6</span>     <span class="l-Scalar-Plain">...</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Entering salt confusing syntaxe ! #F34R</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>useless name !</h1></header>
+            
+            
+            <section><p>Rappel:</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">nom_du_state</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">module_python.fonction_python</span><span class="p-Indicator">:</span>
+<span class="lineno">3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;name&gt;</span>
+<span class="lineno">4</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">clef_2</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">argument_2</span>
+<span class="lineno">5</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">clef_3</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">argument_3</span>
+<span class="lineno">6</span>     <span class="l-Scalar-Plain">...</span>
+</pre></div>
+
+<p>Tous les states salt acceptent comme premier argument "name", c'est une convention. Donc ils ont décidé qu'on pouvait écrire ça comme ça:</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">&lt;name&gt;</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">module_python.fonction_python</span><span class="p-Indicator">:</span>
+<span class="lineno">3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">clef_2</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">argument_2</span>
+<span class="lineno">4</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">clef_3</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">argument_3</span>
+<span class="lineno">5</span>     <span class="l-Scalar-Plain">...</span>
+</pre></div>
+
+<p>Aussi possible (si pas d'arguments):</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">&lt;name&gt;</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">module_python.fonction_python</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              13/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>encore plus !</h1></header>
+            
+            
+            <section><p>Rappel:</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">nom_du_state</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">module_python.fonction_python</span><span class="p-Indicator">:</span>
+<span class="lineno">3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;name&gt;</span>
+<span class="lineno">4</span>     <span class="l-Scalar-Plain">...</span>
+</pre></div>
+
+<p>Ils ont aussi décidé qu'on avait le droit d'écrire ça comme ça:</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">nom_du_state</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">module_python</span><span class="p-Indicator">:</span>
+<span class="lineno">3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">fonction_python</span>
+<span class="lineno">4</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;name&gt;</span>
+<span class="lineno">5</span>     <span class="l-Scalar-Plain">...</span>
+</pre></div>
+
+<p>Utilise uniquement ici:</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">nom_du_state</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">module_python_1</span><span class="p-Indicator">:</span>
+<span class="lineno">3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">fonction_python_1</span>
+<span class="lineno">4</span>   <span class="l-Scalar-Plain">module_python_2</span><span class="p-Indicator">:</span>
+<span class="lineno">5</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">fonction_python_2</span>
+</pre></div>
+
+<p>Car ceci est illégale en yaml:</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">nom_du_state</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">module_python_1.fonction_python_1</span>
+<span class="lineno">3</span>   <span class="l-Scalar-Plain">module_python_2.fonction_python_2</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              14/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>jinaj2</h1></header>
+            
+            
+            <section><p>Vous pouvez utiliser du jinja2 (un système de tempalting python similaire à celui de django) directement dans vos states.</p>
+<p>Exemple:</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="p-Indicator">{</span><span class="err">%</span> <span class="nv">for pkg in</span> <span class="p-Indicator">[</span><span class="s">&#39;git&#39;</span><span class="p-Indicator">,</span> <span class="s">&#39;svn&#39;</span><span class="p-Indicator">,</span> <span class="s">&#39;hg&#39;</span><span class="p-Indicator">]</span> <span class="err">%</span><span class="p-Indicator">}</span>
+<span class="lineno">2</span> <span class="p-Indicator">{{</span> <span class="nv">pkg</span> <span class="p-Indicator">}}:</span>
+<span class="lineno">3</span>   <span class="l-Scalar-Plain">pkg.installed</span>
+<span class="lineno">4</span> <span class="p-Indicator">{</span><span class="err">%</span> <span class="nv">endfor %</span><span class="p-Indicator">}</span>
+</pre></div>
+
+<p>Remarque: ne codez pas ça, y a un moyen bien plus simple de le faire.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              15/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Ordonner les states</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              16/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Ordre d'execution des states</h1></header>
+            
+            
+            <section><p>NOUVEAU: désormait les fichiers .sls sont executé séquentiellement, ce n'était pas le cas avant.</p>
+<p>Il est possible de créé des dépendances d'excution entre state avec "require" et "require_in".</p>
+<p>ATTENTION: syntaxe confusante:</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">service apache2 start</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">cmd.run</span><span class="p-Indicator">:</span>
+<span class="lineno">3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">require</span><span class="p-Indicator">:</span>
+<span class="lineno">4</span>       <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">pkg</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">apache-fpm-prefork</span>
+</pre></div>
+
+<p>Ici "require" n'est PAS un argument pour l'appel de la fonction python.</p>
+<p>"require_in" fait l'inverse de "require", il dit "je suis nécessaire pour ce
+state" ("require" dit "j'ai besoin de ce state").</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              17/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Gestion des événements</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              18/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Retour d'un state</h1></header>
+            
+            
+            <section><p>Chaque state peut revenir dans 3 états différents:</p>
+<ul>
+<li>erreur (rouge): je me suis torché</li>
+<li>ok (vert): je suis déjà dans l'état désiré</li>
+<li>j'ai du agir pour passer dans l'état désiré (bleu)</li>
+</ul>
+<p>C'est le dernier qui est intéressant car il permet de triggerer un autre state grâce à "watch" et "watch_in".</p>
+<p>Exemple: si on répertoire git a été mis à jours, je veux lancer un collectstatic (django).</p>
+<div class="highlight"><pre><span class="lineno"> 1</span> <span class="l-Scalar-Plain">git://pouet.com/pouet.git</span><span class="p-Indicator">:</span>
+<span class="lineno"> 2</span>   <span class="l-Scalar-Plain">git.latest</span><span class="p-Indicator">:</span>
+<span class="lineno"> 3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">target</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/home/moi/pouet</span>
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span> <span class="l-Scalar-Plain">python manage.py collectstatic --noinput</span><span class="p-Indicator">:</span>
+<span class="lineno"> 6</span>   <span class="l-Scalar-Plain">cmd.wait</span><span class="p-Indicator">:</span>
+<span class="lineno"> 7</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">cwd</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/home/moi/pouet</span>
+<span class="lineno"> 8</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">moi</span>
+<span class="lineno"> 9</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">watch</span><span class="p-Indicator">:</span>
+<span class="lineno">10</span>       <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">git</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">git://pouet.com/pouet.git</span>
+</pre></div>
+
+<p>Remarque: ici non plus, "watch" et "watch_in" ne sont <strong>PAS</strong> des arguments pour la fonction.</p>
+<p>Remarque: y a un mod_watch qui existe parfois dans certains states pour faire une action spécial si jamais ils sont appelé via un watch (par exemple "service.running").</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              19/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Et voilà, il faut juste savoir ça !</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              20/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Liste de states cool</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              21/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>User</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="l-Scalar-Plain">fred</span><span class="p-Indicator">:</span>
+<span class="lineno"> 2</span>   <span class="l-Scalar-Plain">user.present</span><span class="p-Indicator">:</span>
+<span class="lineno"> 3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">fullname</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Fred Jones</span>
+<span class="lineno"> 4</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">shell</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/bin/zsh</span>
+<span class="lineno"> 5</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">home</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/home/fred</span>
+<span class="lineno"> 6</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">uid</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">4000</span>
+<span class="lineno"> 7</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">gid</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">4000</span>
+<span class="lineno"> 8</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">groups</span><span class="p-Indicator">:</span>
+<span class="lineno"> 9</span>       <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">wheel</span>
+<span class="lineno">10</span>       <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">storage</span>
+<span class="lineno">11</span>       <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">games</span>
+</pre></div>
+
+<p>Remarque: user.absent existe aussi</p>
+<p>Exemple de doc: <a href="http://docs.saltstack.com/ref/states/all/salt.states.user.html#module-salt.states.user">http://docs.saltstack.com/ref/states/all/salt.states.user.html#module-salt.states.user</a></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              22/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>pkg.installed</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">vim</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">pkg.installed</span>
+</pre></div>
+
+<p>Remarque: salt va automagiquement aller choisir votre gestionnaire de pkg (marche pour apt et yum en tout cas).</p>
+<p>Astuce, vous avez le droit d'écrire:</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">mes_pkgs</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">pkg.installed</span><span class="p-Indicator">:</span>
+<span class="lineno">3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">names</span><span class="p-Indicator">:</span>
+<span class="lineno">4</span>       <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">vim</span>
+<span class="lineno">5</span>       <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">emacs</span>
+<span class="lineno">6</span>       <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">nano</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              23/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>file.managed</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno"> 1</span> <span class="l-Scalar-Plain">/etc/http/conf/http.conf</span><span class="p-Indicator">:</span>
+<span class="lineno"> 2</span>   <span class="l-Scalar-Plain">file.managed</span><span class="p-Indicator">:</span>
+<span class="lineno"> 3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">source</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">salt://apache/http.conf</span>
+<span class="lineno"> 4</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
+<span class="lineno"> 5</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">group</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
+<span class="lineno"> 6</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">mode</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">644</span>
+<span class="lineno"> 7</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">template</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">jinja</span>
+<span class="lineno"> 8</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">defaults</span><span class="p-Indicator">:</span>
+<span class="lineno"> 9</span>         <span class="l-Scalar-Plain">custom_var</span><span class="p-Indicator">:</span> <span class="s">&quot;default</span><span class="nv"> </span><span class="s">value&quot;</span>
+<span class="lineno">10</span>         <span class="l-Scalar-Plain">other_var</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">123</span>
+</pre></div>
+
+<p>Existe aussi: file.directory, file.symlink, file.exists et beaucoup d'autres.</p>
+<p>Remarque: on peut aussi mettre une url combiné avec un hash du fichier.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              24/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>git.latest</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">https://github.com/saltstack/salt.git</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">git.latest</span><span class="p-Indicator">:</span>
+<span class="lineno">3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">rev</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">develop</span>
+<span class="lineno">4</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">target</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/tmp/salt</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              25/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>cmd.run et cmd.wait</h1></header>
+            
+            
+            <section><p>Super pratique !</p>
+<div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">service apache2 reload</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">cmd.wait</span><span class="p-Indicator">:</span>
+<span class="lineno">3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">watch</span><span class="p-Indicator">:</span>
+<span class="lineno">4</span>       <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">git</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;url de mon super projet&gt;</span>
+<span class="lineno">5</span> 
+<span class="lineno">6</span> <span class="l-Scalar-Plain">python manage.py collectstatic</span><span class="p-Indicator">:</span>
+<span class="lineno">7</span>   <span class="l-Scalar-Plain">cmd.run</span><span class="p-Indicator">:</span>
+<span class="lineno">8</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">unless</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">ls /path/vers/les/statics</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              26/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>cron.present</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="l-Scalar-Plain">date &gt; /tmp/crontest</span><span class="p-Indicator">:</span>
+<span class="lineno">2</span>   <span class="l-Scalar-Plain">cron.present</span><span class="p-Indicator">:</span>
+<span class="lineno">3</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">user</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">root</span>
+<span class="lineno">4</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">minute</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">7</span>
+<span class="lineno">5</span>     <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">hour</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              27/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Divers</h1></header>
+            
+            
+            <section><ul>
+<li>
+<p>au début on a parfois du mal à savoir quoi faire car c'est une autre façon de penser. Basiquement c'est généralement coder en state exactement ce qu'on aurait fait à la main PLUS ce qu'il faut faire pour une mis à jours (à coup de watch).</p>
+</li>
+<li>
+<p>vous pouvez aussi écrire vos states en:</p>
+<ul>
+<li>full python</li>
+<li>dans un dsl python</li>
+<li>en json</li>
+<li>en yaml/mako</li>
+<li>voir écrire votre propre renderer</li>
+<li>mais yaml/jinja2 convient dans l'imense majorité des cas</li>
+</ul>
+</li>
+<li>
+<p>vous pouvez écrire le truc appelé par vos states, c'est vraiment pas difficile</p>
+</li>
+<li>pareil pour les modules</li>
+<li>
+<p>hésitez pas à aller voir le code</p>
+</li>
+<li>
+<p>y a BEACOUP plus que ce que je vous ai montré, vraiment (pillar, grains, include, gitfs, se parler entre minions etc ...)</p>
+</li>
+</ul>
+<p>En fait, quasiment tout est customisable dans salt, mais les defaults sont suffisant.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              28/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.markdown -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Exercice: ce que vous voulez</h1></header>
+            
+            
+            <section><p>Propositions:
+<em> déployer un projet django classique (genre carnet-rose) avec toute la stack
+</em> déployer un projet django plus avancé: hacker agenda
+<em> utiliser salt pour gérer la config de votre machine (user, dotfiles, pkgs, config de vos apps)
+</em> vos idées</p>
+<p>Remarque: apprennez direct à utiliser la documentation (demo).</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.markdown">slides.markdown</a>
+            </aside>
+            
+            <aside class="page_number">
+              29/29
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">Salt</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">Au programme du workshop</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">Salt</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">Type de deployement</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">Questions sur c'est quoi salt ?</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">rapide intro à l'orchestration</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">L'orchestration en 5min</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">States</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">Détails importants</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">Les states</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">Exemple</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-12">
+        <th><a href="#slide12">Entering salt confusing syntaxe ! #F34R</a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-13">
+        <th><a href="#slide13">useless name !</a></th>
+        <td><a href="#slide13">13</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-14">
+        <th><a href="#slide14">encore plus !</a></th>
+        <td><a href="#slide14">14</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-15">
+        <th><a href="#slide15">jinaj2</a></th>
+        <td><a href="#slide15">15</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-16">
+        <th><a href="#slide16">Ordonner les states</a></th>
+        <td><a href="#slide16">16</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-17">
+        <th><a href="#slide17">Ordre d'execution des states</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-18">
+        <th><a href="#slide18">Gestion des événements</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-19">
+        <th><a href="#slide19">Retour d'un state</a></th>
+        <td><a href="#slide19">19</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-20">
+        <th><a href="#slide20">Et voilà, il faut juste savoir ça !</a></th>
+        <td><a href="#slide20">20</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-21">
+        <th><a href="#slide21">Liste de states cool</a></th>
+        <td><a href="#slide21">21</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-22">
+        <th><a href="#slide22">User</a></th>
+        <td><a href="#slide22">22</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-23">
+        <th><a href="#slide23">pkg.installed</a></th>
+        <td><a href="#slide23">23</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-24">
+        <th><a href="#slide24">file.managed</a></th>
+        <td><a href="#slide24">24</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-25">
+        <th><a href="#slide25">git.latest</a></th>
+        <td><a href="#slide25">25</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-26">
+        <th><a href="#slide26">cmd.run et cmd.wait</a></th>
+        <td><a href="#slide26">26</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-27">
+        <th><a href="#slide27">cron.present</a></th>
+        <td><a href="#slide27">27</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-28">
+        <th><a href="#slide28">Divers</a></th>
+        <td><a href="#slide28">28</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-29">
+        <th><a href="#slide29">Exercice: ce que vous voulez</a></th>
+        <td><a href="#slide29">29</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
