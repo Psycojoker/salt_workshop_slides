@@ -442,3 +442,13 @@ Propositions:
 * vos idées
 
 Remarque: apprennez direct à utiliser la documentation (demo).
+
+---
+
+# Rappel
+
+* commencer par installer salt
+* configuer le master/minion si nécessaire
+* essayer de faire un test.ping
+* écrire votre /srv/salt/top.sls
+* faire votre premier state (commencez par foutre votre utilisateur ou installer des pkgs par exemple)
